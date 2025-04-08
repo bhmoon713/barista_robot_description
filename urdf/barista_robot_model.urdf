@@ -96,6 +96,41 @@
     </gazebo>
 
 
+    <!-- Standoff_Rod_1_link -->
+    <joint name="Standoff_Rod_1_Joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="Standoff_Rod_1_link"/>
+        <origin xyz="0.1 0.1 0.1875"/>
+    </joint>
+
+    <link name="Standoff_Rod_1_link">
+        <inertial>
+            <mass value="0.5" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="0.47406249999999994" ixy="0.0" ixz="0.0" iyy="0.47406249999999994" iyz="0.0" izz="0.640625" />
+        </inertial>
+        
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01" length="0.22"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.01" length="0.22"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <gazebo reference="Standoff_Rod_1_link">
+        <material>Gazebo/white</material>
+    </gazebo>
+
+
+
     <!-- LEFT WHEEL LINK -->
 
     <joint name="left_wheel_joint" type="continuous">
