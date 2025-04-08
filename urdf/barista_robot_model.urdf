@@ -60,6 +60,42 @@
         <material>Gazebo/Black</material>
     </gazebo>
 
+
+    
+    <!-- Cup_Holder_Tray_link -->
+    <joint name="Cup_Holder_Tray_Joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="Cup_Holder_Tray_link"/>
+        <origin xyz="0 0 0.3425"/>
+    </joint>
+
+    <link name="Cup_Holder_Tray_link">
+        <inertial>
+            <mass value="20.5" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="0.47406249999999994" ixy="0.0" ixz="0.0" iyy="0.47406249999999994" iyz="0.0" izz="0.640625" />
+        </inertial>
+        
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.160" length="0.090"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.160" length="0.090"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <gazebo reference="Cup_Holder_Tray_link">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+
     <!-- LEFT WHEEL LINK -->
 
     <joint name="left_wheel_joint" type="continuous">
