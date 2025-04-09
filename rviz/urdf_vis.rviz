@@ -91,7 +91,7 @@ Visualization Manager:
           Value: true
         head_link:
           Value: true
-      Marker Scale: 0.5
+      Marker Scale: 0.2
       Name: TF
       Show Arrows: true
       Show Axes: true
