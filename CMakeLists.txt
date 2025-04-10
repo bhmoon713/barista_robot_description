@@ -7,8 +7,10 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(rclpy REQUIRED)  # if you use any Python ROS 2 nodes
 find_package(urdf REQUIRED)
 find_package(xacro REQUIRED)
+find_package(gazebo_ros REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -28,6 +30,8 @@ install(
     rviz
     launch
     meshes
+	worlds
+	models
   DESTINATION
     share/${PROJECT_NAME}/
 )
