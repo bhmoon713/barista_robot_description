@@ -38,7 +38,7 @@
         <inertial>
             <mass value="10.0" />
             <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.00047406249999999994" ixy="0.0" ixz="0.0" iyy="0.00047406249999999994" iyz="0.0" izz="0.000640625" />
+            <inertia ixx="0.09923083333333334" ixy="0.0" ixz="0.0" iyy="0.09923083333333334" iyz="0.0" izz="0.15841999999999998" />
         </inertial>
         
         <visual>
@@ -71,9 +71,9 @@
 
     <link name="Cup_Holder_Tray_link">
         <inertial>
-            <mass value="10.0" />
+            <mass value="8.0" />
             <origin xyz="0 0 0" rpy="0 0 0" />
-                <inertia ixx="0.00047406249999999994" ixy="0.0" ixz="0.0" iyy="0.00047406249999999994" iyz="0.0" izz="0.000640625" />
+                <inertia ixx="0.0566" ixy="0.0" ixz="0.0" iyy="0.0566" iyz="0.0" izz="0.1024" />
         </inertial>
         
         <visual>
@@ -107,7 +107,7 @@
         <inertial>
             <mass value="0.5" />
             <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.000047406249999999994" ixy="0.0" ixz="0.0" iyy="0.000047406249999999994" iyz="0.0" izz="0.0000640625" />
+            <inertia ixx="0.0020291666666666665" ixy="0.0" ixz="0.0" iyy="0.0020291666666666665" iyz="0.0" izz="2.5e-05" />
         </inertial>
         
         <visual>
@@ -140,7 +140,7 @@
         <inertial>
             <mass value="0.5" />
             <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.000047406249999999994" ixy="0.0" ixz="0.0" iyy="0.000047406249999999994" iyz="0.0" izz="0.0000640625" />
+            <inertia ixx="0.0020291666666666665" ixy="0.0" ixz="0.0" iyy="0.0020291666666666665" iyz="0.0" izz="2.5e-05" />
         </inertial>
         
         <visual>
@@ -173,7 +173,7 @@
         <inertial>
             <mass value="0.5" />
             <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.000047406249999999994" ixy="0.0" ixz="0.0" iyy="0.000047406249999999994" iyz="0.0" izz="0.0000640625" />
+            <inertia ixx="0.0020291666666666665" ixy="0.0" ixz="0.0" iyy="0.0020291666666666665" iyz="0.0" izz="2.5e-05" />
         </inertial>
         
         <visual>
@@ -206,7 +206,7 @@
         <inertial>
             <mass value="0.5" />
             <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.000047406249999999994" ixy="0.0" ixz="0.0" iyy="0.000047406249999999994" iyz="0.0" izz="0.0000640625" />
+            <inertia ixx="0.0020291666666666665" ixy="0.0" ixz="0.0" iyy="0.0020291666666666665" iyz="0.0" izz="2.5e-05" />
         </inertial>
         
         <visual>
@@ -244,7 +244,7 @@
     <inertial>
         <mass value="1.5" />
         <origin xyz="0 0 0" rpy="-1.57 0 0" />
-        <inertia ixx="0.000346875" ixy="0.0" ixz="0.0" iyy="0.000346875" iyz="0.0" izz="0.00046875" />
+        <inertia ixx=" 0.000517685" ixy="0.0" ixz="0.0" iyy= "0.000517685" iyz="0.0" izz="0.00092928" />
     </inertial>
     <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -262,11 +262,11 @@
 </link>
 
     <gazebo reference="left_wheel">
-        <mu1 value="5.0"/>
-		<mu2 value="0.5"/>
-		<kp value="10000000.0" />
-		<kd value="1.0" />
-		<fdir1 value="1 0 0"/>
+        <mu1 value="1.0"/>
+        <mu2 value="0.8"/>
+        <kp value="1000000.0" />
+        <kd value="10.0" />
+        <fdir1 value="1 0 0"/>
         <material>Gazebo/Black</material>
     </gazebo>
 
@@ -284,7 +284,7 @@
         <inertial>
             <mass value="1.5" />
             <origin xyz="0 0 0" rpy="-1.575 0 0" />
-            <inertia ixx="0.000346875" ixy="0.0" ixz="0.0" iyy="0.000346875" iyz="0.0" izz="0.00046875" />
+        <inertia ixx=" 0.000517685" ixy="0.0" ixz="0.0" iyy= "0.000517685" iyz="0.0" izz="0.00092928" />
         </inertial>
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -301,11 +301,11 @@
         </collision>
     </link>
     <gazebo reference="right_wheel">
-        <mu1 value="5.0"/>
-		<mu2 value="0.5"/>
-		<kp value="10000000.0" />
-		<kd value="1.0" />
-		<fdir1 value="1 0 0"/>
+        <mu1 value="1.0"/>
+        <mu2 value="0.8"/>
+        <kp value="1000000.0" />
+        <kd value="10.0" />
+        <fdir1 value="1 0 0"/>
         <material>Gazebo/Black</material>
     </gazebo>
 
@@ -332,7 +332,7 @@
         <inertial>
             <mass value="0.5" />
             <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.00012500000000000003" ixy="0.0" ixz="0.0" iyy="0.00012500000000000003" iyz="0.0" izz="0.00012500000000000003" />
+            <inertia ixx="9.479166666666669e-06" ixy="0.0" ixz="0.0" iyy="9.479166666666669e-06" iyz="0.0" izz="1.5625000000000004e-05" />
         </inertial>
     </link>
 
@@ -369,7 +369,7 @@
         <inertial>
             <mass value="0.5" />
             <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.00012500000000000003" ixy="0.0" ixz="0.0" iyy="0.00012500000000000003" iyz="0.0" izz="0.00012500000000000003" />
+            <inertia ixx="0.000247808" ixy="0.0" ixz="0.0" iyy="0.000247808" iyz="0.0" izz="0.000247808" />
         </inertial>
     </link>
 
@@ -435,8 +435,8 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <!-- <mesh filename="package://barista_robot_description/meshes/lidar_m10_p.STL" scale="1 1 1"/> -->
-                <cylinder radius="0.025" length="0.02"/>
+                <mesh filename="package://barista_robot_description/meshes/lidar_m10_p.STL" scale="1 1 1"/>
+                <!-- <cylinder radius="0.025" length="0.02"/> -->
             </geometry>
             <material name="red">
                 <color rgba="0.7 0.1 0.1 1" />
