@@ -444,7 +444,7 @@
     <joint name="front_laser_joint" type="fixed">
         <parent link="base_link"/>
         <child link="front_laser"/>
-        <origin xyz="0.14 0.0 0.0775" rpy="0 0 0" />
+        <origin xyz="0.14 0.0 0.0875" rpy="0 0 0" />
         <axis xyz="0 0 0"/>
     </joint>
 
@@ -455,15 +455,14 @@
             <inertia ixx="0.000252666666667" ixy="0" ixz="0" iyy="0.000252666666667" iyz="0" izz="0.0005"/>
         </inertial>
         <visual>
-            <origin xyz="0 0 0.01" rpy="0 0 0" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://barista_robot_description/meshes/lidar_m10_p.STL" scale="1 1 1"/>
-                <!-- <cylinder radius="0.025" length="0.02"/> -->
+                <!-- <mesh filename="package://barista_robot_description/meshes/sick_s3000.dae" scale="0.2 0.2 0.2"/> -->
+                <cylinder radius="0.025" length="0.02"/>
             </geometry>
-            <material name="red">
-                <color rgba="0.7 0.1 0.1 1" />
-            </material>
+            <material name="red"/>
         </visual>
+
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
