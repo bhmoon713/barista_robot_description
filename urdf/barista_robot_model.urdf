@@ -424,9 +424,16 @@
         <publish_odom>true</publish_odom>
         <publish_odom_tf>true</publish_odom_tf>
 
-        <odometry_frame>odom</odometry_frame>
+        <!-- ROS topics -->
+        <cmd_vel_topic>/cmd_vel</cmd_vel_topic>
+        <odometry_topic>/odom</odometry_topic>
         <robot_base_frame>base_footprint</robot_base_frame>
 
+        <!-- Other behavior -->
+        <publish_odom>true</publish_odom>
+        <publish_odom_tf>true</publish_odom_tf>
+        <update_rate>50.0</update_rate>
+        
         </plugin>
     </gazebo>
     
@@ -440,63 +447,65 @@
         <material>Gazebo/DarkGrey</material>
     </gazebo>
 
-    <!-- Laser scan -->
+    <!-- Laser sensor joint -->
     <joint name="front_laser_joint" type="fixed">
         <parent link="base_link"/>
         <child link="front_laser"/>
-        <origin xyz="0.14 0.0 0.0875" rpy="0 0 0" />
-        <axis xyz="0 0 0"/>
+        <origin xyz="0.14 0.0 0.0775" rpy="0 0 0" />
     </joint>
 
+    <!-- Laser link -->
     <link name="front_laser">
         <inertial>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <mass value="0.05" />
-            <inertia ixx="0.000252666666667" ixy="0" ixz="0" iyy="0.000252666666667" iyz="0" izz="0.0005"/>
+            <inertia ixx="0.000252666667" ixy="0" ixz="0" iyy="0.000252666667" iyz="0" izz="0.0005"/>
         </inertial>
+
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <!-- <mesh filename="package://barista_robot_description/meshes/sick_s3000.dae" scale="0.2 0.2 0.2"/> -->
-                <cylinder radius="0.025" length="0.02"/>
+                <mesh filename="package://barista_robot_description/meshes/sick_s3000.dae" scale="0.2 0.2 0.2"/>
             </geometry>
-            <material name="red"/>
+            <material name="red">
+                <color rgba="1.0 0.0 0.0 1.0"/>
+            </material>
         </visual>
 
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-                <cylinder radius="0.025" length="0.02"/>
+                <cylinder radius="0.025" length="0.06"/>
             </geometry>
         </collision>
     </link>
 
+    <!-- Gazebo laser sensor plugin -->
     <gazebo reference="front_laser">
-        <sensor name="sensor_ray" type="ray">
-            <pose>0 0 0 0 0 0</pose>
+        <sensor name="front_laser_ray" type="ray">
+            <pose>0.03 0 0.02 0 0 0</pose>
             <ray>
-            <scan>
-                <horizontal>
-                <samples>200</samples>
-                <resolution>1.0</resolution>
-                <min_angle>-1.57</min_angle>
-                <max_angle>1.57</max_angle>
-                </horizontal>
-            </scan>
-            <range>
-                <min>0.1</min>
-                <max>5.0</max>
-            </range>
+                <scan>
+                    <horizontal>
+                        <samples>200</samples>
+                        <resolution>1.0</resolution>
+                        <min_angle>-1.57</min_angle>
+                        <max_angle>1.57</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.1</min>
+                    <max>5.0</max>
+                </range>
             </ray>
             <always_on>true</always_on>
             <visualize>true</visualize>
-            <update_rate>100.0</update_rate>
+            <update_rate>30.0</update_rate>
             <plugin name="laser" filename="libgazebo_ros_ray_sensor.so">
-            <ros>
-                <!-- <namespace>/box_bot</namespace> -->
-                <remapping>~/out:=scan</remapping>
-            </ros>
-            <output_type>sensor_msgs/LaserScan</output_type>
+                <ros>
+                    <remapping>~/out:=scan</remapping>
+                </ros>
+                <output_type>sensor_msgs/LaserScan</output_type>
             </plugin>
         </sensor>
     </gazebo>
