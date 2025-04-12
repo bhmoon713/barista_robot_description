@@ -1,43 +1,65 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="barista_bot">
 
-<xacro:include filename="$(find barista_robot_description)/xacro/box_bot.gazebo.xacro" />
+<xacro:include filename="$(find barista_robot_description)/xacro/barista_bot.gazebo.xacro" />
 <xacro:include filename="$(find barista_robot_description)/xacro/drive_wheel.xacro" />
 <xacro:include filename="$(find barista_robot_description)/xacro/caster_wheel.xacro" />
+<xacro:include filename="$(find barista_robot_description)/xacro/cup_holder_tray.xacro" />
+<xacro:include filename="$(find barista_robot_description)/xacro/standoff_rod.xacro" />
+<xacro:include filename="$(find barista_robot_description)/xacro/laser_scanner.xacro" />
+    <material name="white">
+        <color rgba="1 1 1 1" />
+    </material>
 
-<xacro:property name="body_width" value="0.1"/>
-<xacro:property name="body_lenght" value="0.1"/>
-<xacro:property name="body_height" value="0.1"/>
+    <material name="orange">
+        <color rgba="1 0.3 0.1 1"/>
+    </material>
 
-    
-<link name="base_link">
-  </link>
+    <material name="blue">
+        <color rgba="0.2 0.2 1 1"/>
+    </material>
 
-  <joint name="base_link_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0 0 0" />
-    <parent link="base_link" />
-    <child link="chassis" />
-  </joint>
-    
-  <link name="chassis">
-    <visual>
-      <geometry>
-        <box size="${body_width} ${body_lenght} ${body_height}"/>
-      </geometry>
-    </visual>
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
 
-    <collision>
-      <geometry>
-        <box size="${body_width} ${body_lenght} ${body_height}"/>
-      </geometry>
-    </collision>
+    <material name="red">
+        <color rgba="1 0 0 1"/>
+    </material>
 
-    <inertial>
-      <mass value="0.5"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <inertia ixx="0.0008333333333333335" ixy="0" ixz="0" iyy="0.0008333333333333335" iyz="0" izz="0.0008333333333333335"/>
-    </inertial>
+    <!-- BASE FOOTPRINT-->
 
-  </link>
+    <link name="base_footprint">
+    </link>
 
+
+  
+    <!-- BASE LINK -->
+    <joint name="base_joint" type="fixed">
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0.1127"/>
+    </joint>
+
+    <link name="base_link">
+        <inertial>
+            <mass value="10.0" />
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <inertia ixx="0.09923083333333334" ixy="0.0" ixz="0.0" iyy="0.09923083333333334" iyz="0.0" izz="0.15841999999999998" />
+        </inertial>
+        
+        <visual>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.178" length="0.155"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.178" length="0.155"/>
+            </geometry>
+        </collision>
+    </link>
 </robot>

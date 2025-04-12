@@ -1,75 +1,65 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="barista_bot">
 
-<xacro:property name="wheel_width" value="0.001"/>
-<xacro:property name="wheel_radius" value="0.035"/>
-<!-- Wheel Macro -->
-<xacro:macro name="wheel" params="wheel_name">
-  <link name="${wheel_name}">    
-      <visual>
-        <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
-        <geometry>
-          <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
-        </geometry>
-      </visual>
+    <!-- LEFT WHEEL LINK -->
+    <joint name="left_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_wheel"/>
+        <origin xyz="0 0.15 -0.0775" rpy="-1.57 0 0" />
+        <axis xyz="0 0 1"/>
+    </joint>
 
-      <collision>
-        <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
-        <geometry>
-          <cylinder length="${wheel_width}" radius="${wheel_radius}"/>
-        </geometry>
-      </collision>
+    <link name="left_wheel">
+        <inertial>
+            <mass value="1.5" />
+            <origin xyz="0 0 0" rpy="-1.57 0 0" />
+            <inertia ixx=" 0.000517685" ixy="0.0" ixz="0.0" iyy= "0.000517685" iyz="0.0" izz="0.00092928" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.0352" length="0.0206"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.0352" length="0.0206"/>
+            </geometry>
+        </collision>
+    </link>
 
-      <inertial>
-        <origin rpy="0 1.5707 1.5707" xyz="0 0 0"/>
-        <mass value="0.05"/>
-        <inertia ixx="1.531666666666667e-05" ixy="0" ixz="0" iyy="1.531666666666667e-05" iyz="0" izz="3.0625000000000006e-05"/>
-      </inertial>
-  </link>
-</xacro:macro>
 
+    <!-- RIGHT WHEEL LINK -->
 
-  <!-- Wheel Left -->
- <xacro:wheel wheel_name="left_wheel" />
+    <joint name="right_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_wheel"/>
+        <origin xyz="0 -0.15 -0.0775" rpy="1.57 0 0" />
+        <axis xyz="0 0 -1"/>
+    </joint>
 
-  <!-- Wheel Right -->
-  <xacro:wheel wheel_name="right_wheel" />
-
-  <joint name="joint_left_wheel" type="continuous">
-    <origin rpy="0 0 0" xyz="0 0.05 -0.025"/>
-    <child link="left_wheel"/>
-    <parent link="chassis"/>
-    <axis rpy="0 0 0" xyz="0 1 0"/>
-    <limit effort="10000" velocity="1000"/>
-    <joint_properties damping="1.0" friction="1.0"/>
-  </joint>
-  
-  <joint name="joint_right_wheel" type="continuous">  
-    <origin rpy="0 0 0" xyz="0 -0.05 -0.025"/>
-    <child link="right_wheel"/>
-    <parent link="chassis"/>
-    <axis rpy="0 0 0" xyz="0 1 0"/>
-    <limit effort="10000" velocity="1000"/>
-    <joint_properties damping="1.0" friction="1.0"/>
-  </joint>
+    <link name="right_wheel">
+        <inertial>
+            <mass value="1.5" />
+            <origin xyz="0 0 0" rpy="-1.575 0 0" />
+        <inertia ixx=" 0.000517685" ixy="0.0" ixz="0.0" iyy= "0.000517685" iyz="0.0" izz="0.00092928" />
+        </inertial>
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.0352" length="0.0206"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder radius="0.0352" length="0.0206"/>
+            </geometry>
+        </collision>
+    </link>
 </robot>
 
 
-
-
-
-
-  <!-- <xacro:macro name="drive_wheel" params="side parent xyz rpy axis">
-    <joint name="${side}_wheel_joint" type="continuous">
-      <parent link="${parent}"/>
-      <child link="${side}_wheel"/>
-      <origin xyz="${xyz}" rpy="${rpy}"/>
-      <axis xyz="${axis}"/>
-    </joint>
-    <link name="${side}_wheel">
-      <visual><geometry><cylinder radius="0.0352" length="0.0206"/></geometry></visual>
-      <collision><geometry><cylinder radius="0.0352" length="0.0206"/></geometry></collision>
-      <inertial><mass value="1.5"/></inertial>
-    </link>
-  </xacro:macro>
-</robot> -->
