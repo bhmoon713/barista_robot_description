@@ -1,42 +1,52 @@
 import os
+
 from ament_index_python.packages import get_package_share_directory, get_package_prefix
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import Command, PathJoinSubstitution
 from launch_ros.actions import Node
-import xacro
+from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
-    # Setup package paths
+    # Gather paths
+    pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
     pkg_description = get_package_share_directory('barista_robot_description')
     install_dir = get_package_prefix('barista_robot_description')
-    pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
 
-    # Set Gazebo paths
     gazebo_models_path = os.path.join(pkg_description, 'models')
     mesh_path = os.path.join(pkg_description, 'meshes')
 
     os.environ['GAZEBO_MODEL_PATH'] = f"{os.environ.get('GAZEBO_MODEL_PATH', '')}:{install_dir}/share:{gazebo_models_path}:{mesh_path}"
     os.environ['GAZEBO_PLUGIN_PATH'] = f"{os.environ.get('GAZEBO_PLUGIN_PATH', '')}:{install_dir}/lib"
 
-    # Xacro processing    # convert XACRO file into URDF
-    xacro_file = os.path.join(pkg_description, 'xacro', 'barista_robot_model.urdf.xacro')
-    doc = xacro.parse(open(xacro_file))
-    # xacro.process_doc(doc, mappings={'include_laser': 'true'})
-    xacro.process_doc(doc) 
-    params = {'robot_description': doc.toxml()}
+    # Correct xacro command as individual list arguments
+    robot_description_content = Command([
+        'xacro',
+        PathJoinSubstitution([
+            FindPackageShare('barista_robot_description'),
+            'xacro',
+            'barista_robot_model.urdf.xacro'
+        ]),
+        'include_laser:=true'
+    ])
 
-    # Nodes
+    rviz_config = os.path.join(pkg_description, 'rviz', 'urdf_vis.rviz')
+
+    # Robot State Publisher
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         name='robot_state_publisher_node',
+        parameters=[{
+            'use_sim_time': True,
+            'robot_description': robot_description_content
+        }],
         output='screen',
-        parameters=[params]
+        emulate_tty=True
     )
 
-    rviz_config = os.path.join(pkg_description, 'rviz', 'urdf_vis.rviz')
-
+    # RViz node
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
@@ -46,9 +56,10 @@ def generate_launch_description():
         parameters=[{'use_sim_time': True}]
     )
 
+    # Gazebo and robot spawn
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
-            os.path.join(pkg_gazebo_ros, 'launch', 'gazebo.launch.py')
+            os.path.join(pkg_gazebo_ros, 'launch', 'gazebo.launch.py'),
         )
     )
 
@@ -66,6 +77,11 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        DeclareLaunchArgument(
+            'world',
+            default_value=os.path.join(pkg_description, 'worlds', 'empty.world'),
+            description='SDF world file'
+        ),
         robot_state_publisher_node,
         rviz_node,
         gazebo,
