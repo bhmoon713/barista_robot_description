@@ -1,12 +1,10 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="barista_bot">
 
-  <!-- Load Material Colors -->
-  <xacro:include filename="$(find barista_robot_description)/xacro/materials.xacro" />
+  <xacro:arg name="include_laser" default="true"/>
 
-  <!-- Properties -->
-  <xacro:property name="wheel_radius" value="0.0352"/>
-  <xacro:property name="wheel_width" value="0.0206"/>
+  <!-- Load Material Colors -->
+  <xacro:include filename="$(find barista_robot_description)/xacro/materials.xacro"/>
 
   <!-- Include Macro Files -->
   <xacro:include filename="$(find barista_robot_description)/xacro/drive_wheel.xacro"/>
@@ -15,56 +13,40 @@
   <xacro:include filename="$(find barista_robot_description)/xacro/cup_holder_tray.xacro"/>
   <xacro:include filename="$(find barista_robot_description)/xacro/laser_scanner.xacro"/>
 
-  <!-- Base Footprint -->
+  <!-- Base -->
   <link name="base_footprint"/>
-
   <joint name="base_joint" type="fixed">
     <parent link="base_footprint"/>
     <child link="base_link"/>
     <origin xyz="0 0 0.1127"/>
   </joint>
-
-  <!-- Base Link -->
   <link name="base_link">
-    <inertial>
-      <mass value="10.0"/>
-      <origin xyz="0 0 0"/>
-      <inertia ixx="0.0992" ixy="0.0" ixz="0.0" iyy="0.0992" iyz="0.0" izz="0.1584"/>
-    </inertial>
-    <visual>
-      <geometry>
-        <cylinder radius="0.178" length="0.155"/>
-      </geometry>
-      <material name="blue"/>
-    </visual>
-    <collision>
-      <geometry>
-        <cylinder radius="0.178" length="0.155"/>
-      </geometry>
-    </collision>
+    <visual><geometry><cylinder radius="0.178" length="0.155"/></geometry></visual>
+    <collision><geometry><cylinder radius="0.178" length="0.155"/></geometry></collision>
+    <inertial><mass value="10.0"/></inertial>
   </link>
 
-  <!-- Drive Wheels -->
+  <!-- Wheels -->
   <xacro:drive_wheel side="left" parent="base_link" xyz="0 0.15 -0.0775" rpy="-1.57 0 0" axis="0 0 1"/>
   <xacro:drive_wheel side="right" parent="base_link" xyz="0 -0.15 -0.0775" rpy="1.57 0 0" axis="0 0 -1"/>
 
-  <!-- Caster Wheels -->
+  <!-- Casters -->
   <xacro:caster_wheel name="front_caster" parent="base_link" xyz="0.1 0.0 -0.0775"/>
   <xacro:caster_wheel name="back_caster" parent="base_link" xyz="-0.1 0.0 -0.0775"/>
 
-  <!-- Standoff Rods -->
+  <!-- Standoffs -->
   <xacro:standoff_rod name="Standoff_Rod_1" parent="base_link" xyz="0.1 0.1 0.1875"/>
   <xacro:standoff_rod name="Standoff_Rod_2" parent="base_link" xyz="-0.1 -0.1 0.1875"/>
   <xacro:standoff_rod name="Standoff_Rod_3" parent="base_link" xyz="0.1 -0.1 0.1875"/>
   <xacro:standoff_rod name="Standoff_Rod_4" parent="base_link" xyz="-0.1 0.1 0.1875"/>
 
-  <!-- Cup Holder Tray -->
+  <!-- Tray -->
   <xacro:cup_holder_tray parent="base_link" xyz="0 0 0.3425"/>
 
-  <!-- Laser Scanner with conditional argument -->
-  <xacro:arg name="include_laser" default="true"/>
-  <xacro:if value="${include_laser}">
+  <!-- Optional laser -->
+  <!-- <xacro:if value="${include_laser}">
     <xacro:laser_scanner parent="base_link" xyz="0.14 0.0 0.0775"/>
-  </xacro:if>
+  </xacro:if> -->
+  <xacro:laser_scanner parent="base_link" xyz="0.14 0.0 0.0775"/>
 
 </robot>
