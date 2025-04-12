@@ -1,4 +1,5 @@
-<xacro:macro name="standoff_rod" params="name parent xyz">
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="standoff_rod" params="name parent xyz">
   <joint name="${name}_Joint" type="fixed">
     <parent link="${parent}"/>
     <child link="${name}_link"/>
@@ -27,4 +28,4 @@
   <gazebo reference="${name}_link">
     <material>Gazebo/white</material>
   </gazebo>
-</xacro:macro>
+</robot>

@@ -6,6 +6,8 @@ from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, LaunchConfiguration
 from launch_ros.actions import Node
+from launch.substitutions import PathJoinSubstitution
+from launch_ros.substitutions import FindPackageShare
 
 def generate_launch_description():
     pkg_gazebo_ros = get_package_share_directory('gazebo_ros')
@@ -22,7 +24,15 @@ def generate_launch_description():
     robot_desc_path = os.path.join(pkg_description, 'xacro', urdf_file)
     rviz_config_dir = os.path.join(pkg_description, 'rviz', 'urdf_vis.rviz')
 
-    robot_description_content = Command(['xacro ', robot_desc_path, ' include_laser:=true'])
+    robot_description_content = Command([
+        'xacro',
+        PathJoinSubstitution([
+            FindPackageShare('barista_robot_description'),
+            'xacro ',
+            'barista_robot_model.urdf.xacro'
+        ]),
+        'include_laser:=true'
+    ])
 
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
