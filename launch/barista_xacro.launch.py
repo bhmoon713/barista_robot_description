@@ -19,7 +19,7 @@ def generate_launch_description():
     os.environ['GAZEBO_MODEL_PATH'] = f"{os.environ.get('GAZEBO_MODEL_PATH', '')}:{install_dir}/share:{gazebo_models_path}:{mesh_path}"
     os.environ['GAZEBO_PLUGIN_PATH'] = f"{os.environ.get('GAZEBO_PLUGIN_PATH', '')}:{install_dir}/lib"
 
-    # Xacro processing
+    # Xacro processing    # convert XACRO file into URDF
     xacro_file = os.path.join(pkg_description, 'xacro', 'barista_robot_model.urdf.xacro')
     doc = xacro.parse(open(xacro_file))
     # xacro.process_doc(doc, mappings={'include_laser': 'true'})
