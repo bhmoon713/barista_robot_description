@@ -5,8 +5,11 @@ from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import Node
 import xacro
+from launch.substitutions import Command
+
 
 def generate_launch_description():
+
     # Setup package paths
     pkg_description = get_package_share_directory('barista_robot_description')
     install_dir = get_package_prefix('barista_robot_description')
@@ -24,6 +27,7 @@ def generate_launch_description():
     doc = xacro.parse(open(xacro_file))
     # xacro.process_doc(doc, mappings={'include_laser': 'true'})
     xacro.process_doc(doc) 
+
     params = {'robot_description': doc.toxml()}
 
     # Nodes
