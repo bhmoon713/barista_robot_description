@@ -100,7 +100,7 @@
     <joint name="Standoff_Rod_1_Joint" type="fixed">
         <parent link="base_link"/>
         <child link="Standoff_Rod_1_link"/>
-        <origin xyz="0.1 0.1 0.1875"/>
+        <origin xyz="0.05 0.14 0.1875"/>
     </joint>
 
     <link name="Standoff_Rod_1_link">
@@ -133,7 +133,7 @@
     <joint name="Standoff_Rod_2_Joint" type="fixed">
         <parent link="base_link"/>
         <child link="Standoff_Rod_2_link"/>
-        <origin xyz="-0.1 -0.1 0.1875"/>
+        <origin xyz="-0.05 -0.14 0.1875"/>
     </joint>
 
     <link name="Standoff_Rod_2_link">
@@ -166,7 +166,7 @@
     <joint name="Standoff_Rod_3_Joint" type="fixed">
         <parent link="base_link"/>
         <child link="Standoff_Rod_3_link"/>
-        <origin xyz="0.1 -0.1 0.1875"/>
+        <origin xyz="0.05 -0.14 0.1875"/>
     </joint>
 
     <link name="Standoff_Rod_3_link">
@@ -199,7 +199,7 @@
     <joint name="Standoff_Rod_4_Joint" type="fixed">
         <parent link="base_link"/>
         <child link="Standoff_Rod_4_link"/>
-        <origin xyz="-0.1 0.1 0.1875"/>
+        <origin xyz="-0.05 0.14 0.1875"/>
     </joint>
 
     <link name="Standoff_Rod_4_link">
