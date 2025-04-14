@@ -1,58 +1,36 @@
-<?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="barista_bot">
-
-<!-- FRONT CASTER WHEEL -->
-    <joint name="front_caster_wheel_joint" type="fixed">
-        <parent link="base_link"/>
-        <child link="front_caster"/>
-        <origin xyz="0.1 0.0 -0.0775" rpy="0 0 0" />
-        <axis xyz="0 0 0"/>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="caster_wheel" params="name parent xyz">
+    <joint name="${name}_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child link="${name}"/>
+      <origin xyz="${xyz}" rpy="0 0 0"/>
     </joint>
 
-    <link name="front_caster">
-        <visual>
-            <geometry>
-                <sphere radius="0.0352"/>
-            </geometry>
-        </visual>
-        <collision>
-            <geometry>
-                <sphere radius="0.0352"/>
-            </geometry>
-        </collision>
-        <inertial>
-            <mass value="0.5" />
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="9.479166666666669e-06" ixy="0.0" ixz="0.0" iyy="9.479166666666669e-06" iyz="0.0" izz="1.5625000000000004e-05" />
-        </inertial>
+    <link name="${name}">
+      <visual>
+        <geometry>
+          <sphere radius="0.0352"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <sphere radius="0.0352"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.5"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="9.479e-6" ixy="0" ixz="0" iyy="9.479e-6" iyz="0" izz="1.5625e-5"/>
+      </inertial>
     </link>
 
-
-    <!-- REAR CASTER WHEEL -->
-
-    <joint name="rear_caster_wheel_joint" type="fixed">
-        <parent link="base_link"/>
-        <child link="back_caster"/>
-        <origin xyz="-0.1 0.0 -0.0775" rpy="0 0 0" />
-        <axis xyz="0 0 0"/>
-    </joint>
-
-    <link name="back_caster">
-        <visual>
-            <geometry>
-                <sphere radius="0.0352"/>
-            </geometry>
-        </visual>
-        <collision>
-            <geometry>
-                <sphere radius="0.0352"/>
-            </geometry>
-        </collision>
-        <inertial>
-            <mass value="0.5" />
-            <origin xyz="0 0 0" rpy="0 0 0" />
-            <inertia ixx="0.000247808" ixy="0.0" ixz="0.0" iyy="0.000247808" iyz="0.0" izz="0.000247808" />
-        </inertial>
-    </link>
-</robot>   
-
+    <gazebo reference="${name}">
+      <mu1 value="0.0"/>
+      <mu2 value="0.0"/>
+      <kp value="10000000.0"/>
+      <kd value="100.0"/>
+      <fdir1 value="0 0 1"/>
+      <material>Gazebo/Gray</material>
+    </gazebo>
+  </xacro:macro>
+</robot>
