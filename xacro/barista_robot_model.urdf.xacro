@@ -1,11 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="barista_bot">
-
-    <!-- Conditional laser -->
-    <!-- <xacro:arg name="include_laser" default="true"/> -->
-    <!-- <xacro:if value="$(arg include_laser)"> -->
-        <!-- <xacro:laser_scanner parent="base_link"/> -->
-    <!-- </xacro:if> -->
+    
 
     <!-- Arguments -->
     <xacro:arg name="robot_name" default="barista_bot"/>
@@ -67,9 +62,14 @@
     <!-- Casters -->
     <xacro:caster_wheel name="front_caster" parent="base_link" xyz="0.1 0.0 -0.0775"/>
     <xacro:caster_wheel name="rear_caster" parent="base_link" xyz="-0.1 0.0 -0.0775"/>
-   
+    
+    <!-- Laser include -->
+    <xacro:laser_scanner include_laser="True"/>
     <!-- Laser -->
-    <xacro:laser_scanner parent="base_link"/>
+    <!-- <xacro:macro name="laser_scanner" params="include_laser:=true"> -->
+    <!-- <xacro:laser_scanner parent="base_link"/> -->
+
+
 
     <gazebo>
     <plugin filename="libgazebo_ros_diff_drive.so" name="differential_drive_controller">
