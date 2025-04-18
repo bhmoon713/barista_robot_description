@@ -1,6 +1,6 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:macro name="cup_holder_tray" params="parent">
-    <joint name="Cup_Holder_Tray_Joint" type="fixed">
+    <joint name="Cup_Holder_Tray_joint" type="fixed">
       <parent link="${parent}"/>
       <child link="Cup_Holder_Tray_link"/>
       <origin xyz="0 0 0.3425"/>

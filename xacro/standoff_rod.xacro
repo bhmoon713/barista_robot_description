@@ -1,6 +1,6 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   <xacro:macro name="standoff_rod" params="name parent xyz">
-    <joint name="${name}_Joint" type="fixed">
+    <joint name="${name}_joint" type="fixed">
       <parent link="${parent}"/>
       <child link="${name}_link"/>
       <origin xyz="${xyz}"/>
