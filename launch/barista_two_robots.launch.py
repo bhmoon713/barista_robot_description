@@ -13,7 +13,7 @@ import xacro
 
 # this is the function launch  system will look for
 def generate_launch_description():
-
+    barista_robot_gazebo = get_package_share_directory('barista_robot_description')
     ####### DATA INPUT ##########
     xacro_file = 'barista_robot_model.urdf.xacro'
     package_description = "barista_robot_description"
@@ -62,7 +62,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             os.path.join(pkg_gazebo_ros, 'launch', 'gazebo.launch.py'),
         )
-    )    
+    )   
     include_laser_value = LaunchConfiguration('include_laser')
     use_sim_time = LaunchConfiguration('use_sim_time', default='true') 
 
@@ -186,6 +186,11 @@ def generate_launch_description():
     # create and return launch description object
     return LaunchDescription(
         [                     
+            DeclareLaunchArgument(
+            'world',
+            default_value=[os.path.join(barista_robot_gazebo, 'worlds', 'empty.world'), ''],
+            description='SDF world file'),
+            
             laser_arg,
             # robot_name_arg,
             robot_state_publisher_node_1,
