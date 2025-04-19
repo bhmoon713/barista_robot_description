@@ -57,12 +57,6 @@ def generate_launch_description():
             description='Include laser in the simulation'
             )
 
-    # robot_name_arg = DeclareLaunchArgument(
-    #         name = 'robot_name', 
-    #         default_value='robot1', 
-    #         description='Name of the robot')
-
-
     # # Gazebo launch
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -77,8 +71,8 @@ def generate_launch_description():
     xacro.process_doc(doc)
     params = {'robot_description': doc.toxml()}
     
-    # Another way to launch xacro file
-    urdf_content_1 = Command([
+    # convert XACRO file into URDF - with argument
+    urdf_robot_name_1 = Command([
         'xacro', ' ',
         robot_desc_path,' ',
         ' include_laser:=' , include_laser_value, ' ',
@@ -86,7 +80,7 @@ def generate_launch_description():
         'robot_color:=', robot_color_1,
     ])
 
-    urdf_content_2 = Command([
+    urdf_robot_name_2 = Command([
         'xacro', ' ',
         robot_desc_path,' ',
         ' include_laser:=' , include_laser_value, ' ',
@@ -103,7 +97,7 @@ def generate_launch_description():
         emulate_tty=True,
         namespace=robot_name_1,
         # parameters=[params],
-        parameters=[{'frame_prefix': robot_name_1+'/', 'use_sim_time': use_sim_time, 'robot_description': urdf_content_1}],
+        parameters=[{'frame_prefix': robot_name_1+'/', 'use_sim_time': use_sim_time, 'robot_description': urdf_robot_name_1}],
         output="screen"
     )
 
@@ -114,7 +108,7 @@ def generate_launch_description():
         emulate_tty=True,
         namespace=robot_name_2,
         # parameters=[params],
-        parameters=[{'frame_prefix': robot_name_2+'/', 'use_sim_time': use_sim_time, 'robot_description': urdf_content_2}],
+        parameters=[{'frame_prefix': robot_name_2+'/', 'use_sim_time': use_sim_time, 'robot_description': urdf_robot_name_2}],
         output="screen"
     )
 
