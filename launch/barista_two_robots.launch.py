@@ -47,8 +47,8 @@ def generate_launch_description():
     
     robot_name_1 = "rick"
     robot_name_2 = "morty"
-    robot_color_1 = "Red"
-    robot_color_2 = "Blue"
+    robot_color_1 = "Blue"
+    robot_color_2 = "Red"
 
     #Argument launch
     laser_arg = DeclareLaunchArgument(

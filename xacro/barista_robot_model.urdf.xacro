@@ -6,7 +6,7 @@
     <xacro:arg name="robot_name" default="robot1"/>
     <xacro:property name = "robot_name" value = "$(arg robot_name)"/>
 
-    <xacro:arg name="robot_color" default="Red"/>
+    <xacro:arg name="robot_color" default="Blue"/>
     <xacro:property name = "robot_color" value = "$(arg robot_color)"/>
     <!-- PLUGINS -->
 
