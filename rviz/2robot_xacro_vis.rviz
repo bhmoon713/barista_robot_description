@@ -289,6 +289,120 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+        morty/Cup_Holder_Tray_link:
+          Value: true
+        morty/Standoff_Rod_1_link:
+          Value: true
+        morty/Standoff_Rod_2_link:
+          Value: true
+        morty/Standoff_Rod_3_link:
+          Value: true
+        morty/Standoff_Rod_4_link:
+          Value: true
+        morty/base_footprint:
+          Value: true
+        morty/base_link:
+          Value: true
+        morty/front_caster:
+          Value: true
+        morty/front_laser:
+          Value: true
+        morty/left_wheel:
+          Value: true
+        morty/odom:
+          Value: true
+        morty/rear_caster:
+          Value: true
+        morty/right_wheel:
+          Value: true
+        rick/Cup_Holder_Tray_link:
+          Value: true
+        rick/Standoff_Rod_1_link:
+          Value: true
+        rick/Standoff_Rod_2_link:
+          Value: true
+        rick/Standoff_Rod_3_link:
+          Value: true
+        rick/Standoff_Rod_4_link:
+          Value: true
+        rick/base_footprint:
+          Value: true
+        rick/base_link:
+          Value: true
+        rick/front_caster:
+          Value: true
+        rick/front_laser:
+          Value: true
+        rick/left_wheel:
+          Value: true
+        rick/odom:
+          Value: true
+        rick/rear_caster:
+          Value: true
+        rick/right_wheel:
+          Value: true
+        world:
+          Value: true
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: false
+      Tree:
+        world:
+          morty/odom:
+            morty/base_footprint:
+              morty/base_link:
+                morty/Cup_Holder_Tray_link:
+                  {}
+                morty/Standoff_Rod_1_link:
+                  {}
+                morty/Standoff_Rod_2_link:
+                  {}
+                morty/Standoff_Rod_3_link:
+                  {}
+                morty/Standoff_Rod_4_link:
+                  {}
+                morty/front_caster:
+                  {}
+                morty/front_laser:
+                  {}
+                morty/left_wheel:
+                  {}
+                morty/rear_caster:
+                  {}
+                morty/right_wheel:
+                  {}
+          rick/odom:
+            rick/base_footprint:
+              rick/base_link:
+                rick/Cup_Holder_Tray_link:
+                  {}
+                rick/Standoff_Rod_1_link:
+                  {}
+                rick/Standoff_Rod_2_link:
+                  {}
+                rick/Standoff_Rod_3_link:
+                  {}
+                rick/Standoff_Rod_4_link:
+                  {}
+                rick/front_caster:
+                  {}
+                rick/front_laser:
+                  {}
+                rick/left_wheel:
+                  {}
+                rick/rear_caster:
+                  {}
+                rick/right_wheel:
+                  {}
+      Update Interval: 0
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -350,10 +464,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.785398006439209
+      Pitch: 0.4003981351852417
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.785398006439209
+      Yaw: 0.7703980207443237
     Saved: ~
 Window Geometry:
   Displays:

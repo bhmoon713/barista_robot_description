@@ -188,7 +188,7 @@ def generate_launch_description():
         [                     
             DeclareLaunchArgument(
             'world',
-            default_value=[os.path.join(barista_robot_gazebo, 'worlds', 'empty3.world'), ''],
+            default_value=[os.path.join(barista_robot_gazebo, 'worlds', 'simple.world'), ''],
             description='SDF world file'),
             
             laser_arg,
