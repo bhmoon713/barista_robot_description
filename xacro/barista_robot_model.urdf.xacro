@@ -43,8 +43,16 @@
         <geometry><cylinder radius="0.178" length="0.155"/></geometry>
         </collision>
     </link>
-    <gazebo reference="base_link"><material>Gazebo/${robot_color}</material></gazebo>
 
+    <gazebo reference="base_link">
+      <mu1 value="0.0"/>
+      <mu2 value="0.0"/>
+      <kp value="1000000.0"/>
+      <kd value="10.0"/>
+      <fdir1 value="1 0 0"/>
+      <material>Gazebo/${robot_color}</material>
+    </gazebo>
+    
     <!-- Include modular components -->
     <xacro:include filename="$(find barista_robot_description)/xacro/cup_holder_tray.xacro"/>
     <xacro:include filename="$(find barista_robot_description)/xacro/standoff_rod.xacro"/>

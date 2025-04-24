@@ -30,7 +30,13 @@
     </link>
 
     <gazebo reference="Cup_Holder_Tray_link">
+      <mu1 value="0.0"/>
+      <mu2 value="0.0"/>
+      <kp value="1000000.0"/>
+      <kd value="10.0"/>
+      <fdir1 value="1 0 0"/>
       <material>Gazebo/${robot_color}</material>
     </gazebo>
+
   </xacro:macro>
 </robot>
