@@ -59,10 +59,9 @@ def generate_launch_description():
 
     # # Gazebo launch
     gazebo = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(pkg_gazebo_ros, 'launch', 'gazebo.launch.py'),
-        )
-    )   
+    PythonLaunchDescriptionSource(os.path.join(pkg_gazebo_ros, 'launch', 'gazebo.launch.py')),
+    launch_arguments={'world': LaunchConfiguration('world')}.items()
+)
     include_laser_value = LaunchConfiguration('include_laser')
     use_sim_time = LaunchConfiguration('use_sim_time', default='true') 
 
@@ -171,7 +170,8 @@ def generate_launch_description():
         name='static_transform_publisher_turtle_odom_1',
         output='screen',
         emulate_tty=True,
-        arguments=['0', '0', '0', '0', '0', '0', 'world', robot_name_1+'/odom']
+        arguments=['1', '0', '0', '0', '0', '0', 'world', robot_name_1+'/odom']
+
     )
 
     static_tf_pub_2 = Node(
@@ -180,7 +180,8 @@ def generate_launch_description():
         name='static_transform_publisher_turtle_odom_2',
         output='screen',
         emulate_tty=True,
-        arguments=['0', '0', '0', '0', '0', '0', 'world', robot_name_2+'/odom']
+        arguments=['-1', '0', '0', '0', '0', '0', 'world', robot_name_2+'/odom']
+
     )
 
     # create and return launch description object
